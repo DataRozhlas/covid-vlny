@@ -5,10 +5,6 @@ import pandas as pd
 pripady = pd.read_csv(
     'https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/osoby.csv')
 # %%
-hosp = pd.read_csv(
-    'https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/hospitalizace.csv')
-# %%
-hosp
 # %%
 pr = pd.DataFrame(pripady.datum.value_counts().sort_index()).reset_index()
 pr.columns = ['datum', 'nakazeni']
@@ -28,5 +24,7 @@ o = r20.merge(r21, on='datum', how='left')
 o.datum.apply(lambda x: str(
     int(x.split('-')[1])) + '. ' + str(int(x.split('-')[0])) + '.').to_clipboard()
 # %%
-o.nakazeni_y.to_clipboard()
+o.nakazeni_x.to_clipboard()
+# %%
+hosp
 # %%
